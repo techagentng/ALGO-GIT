@@ -9,6 +9,7 @@ func halfReverse(){
 	numRes1 := []int{}
 	numRes2 := []int{}
 	nums := []int{22, 23, 33, 34, 35, 76, 47, 8}
+	//var real = []int{1,2}
 	for i := (len(nums)-1)/2; i >= 0; i-- {
 		numRes1 = append(numRes1, nums[i])
 	}

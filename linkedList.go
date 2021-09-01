@@ -19,19 +19,22 @@ type linkedlist struct{
 	head *node
 	length int
 }
-//method implimentation: linklist has a head of a node and pointer to the next value
+//method to add nodes to: linklist has a head of a node and pointer to the next value
 func (l *linkedlist) prepend(n *node) {
+	//fmt.Println("ooooooooooooo",n)
 	//Define a place to put n
 	Second := l.head
 	//Place pointer n node inside its position head
 	l.head = n
+	//fmt.Println("xxxxxxxxxx",n)
 	//Now that n is in its position, define what comes next which is second
 	l.head.next = Second
 	//
-	l.length ++
+	l.length++
 
 }
 
+//A copy of linkedlist struct
 func (l linkedlist) printListData(){
 	toPrint := l.head // head is inside toPrint
 	//counting down from the highest l.length
@@ -43,53 +46,62 @@ func (l linkedlist) printListData(){
 	fmt.Printf("\n")
 }
 
-
-// Given numbers in a linked list
-type Node struct {
-   value int
-   next *Node
+//Delete a particular node value
+func (l linkedlist) deleteWithVal(val int){
+	prevToDelete := l.head
+	//comparing values in the next node
+	for prevToDelete.next.data != val{
+		prevToDelete = prevToDelete.next
+	}
+	prevToDelete.next = prevToDelete.next.next
+	l.length--
 }
-func NewNode(value int, next *Node) *Node{
-   var n Node
-   n.value = value
-   n.next = next
-   return &n
-}
-func CountNodes(head *Node){
-   fmt.Printf("Input Linked List is: ")
-   count :=0
-   temp := head
-   for temp != nil {
-      fmt.Printf("%d ", temp.value)
-      temp = temp.next
-      count += 1
-   }
-   fmt.Printf("\nNumber of nodes in the linked list is: %d\n", count)
-}
+// // Given numbers in a linked list
+// type Node struct {
+//    value int
+//    next *Node
+// }
+// func NewNode(value int, next *Node) *Node{
+//    var n Node
+//    n.value = value
+//    n.next = next
+//    return &n
+// }
+// func CountNodes(head *Node){
+//    fmt.Printf("Input Linked List is: ")
+//    count :=0
+//    temp := head
+//    for temp != nil {
+//       fmt.Printf("%d ", temp.value)
+//       temp = temp.next
+//       count += 1
+//    }
+//    fmt.Printf("\nNumber of nodes in the linked list is: %d\n", count)
+// }
 
 
 
 
 func main(){
-	// myList := linkedlist{}
-	// node1 := &node{data: 40}
-	// node2 := &node{data: 33}
-	// node3 := &node{data: 30}
-	// node4 := &node{data: 3}
-	// node5 := &node{data: 6}
-	// node6 := &node{data: 23}
-	// node7 := &node{data: 73}
-	// myList.prepend(node1)
-	// myList.prepend(node2)
-	// myList.prepend(node3)
-	// myList.prepend(node4)
-	// myList.prepend(node5)
-	// myList.prepend(node6)
-	// myList.prepend(node7)
-	//fmt.Printf("full list %v", myList)
-	//myList.printListData()
+	myList := linkedlist{}
+    node1 := &node{data: 40}
+	node2 := &node{data: 33}
+	node3 := &node{data: 30}
+	node4 := &node{data: 3}
+	node5 := &node{data: 6}
+	node6 := &node{data: 23}
+	node7 := &node{data: 73}
+	myList.prepend(node1)
+	myList.prepend(node2)
+	myList.prepend(node3)
+	myList.prepend(node4)
+	myList.prepend(node5)
+	myList.prepend(node6)
+	myList.prepend(node7)
+	// fmt.Printf("full list %v", myList)
+	myList.printListData()
 
-
-	head := NewNode(30, NewNode(10, NewNode(40, NewNode(40, nil))))
-	CountNodes(head)
+	/******************SECOND CODE CALL****************************/
+	//head := NewNode(30, NewNode(10, NewNode(40, NewNode(40, nil))))
+	//CountNodes(head)
 }

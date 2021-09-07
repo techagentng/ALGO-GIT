@@ -6,7 +6,7 @@ import "fmt"
 
 /*
 Building the list and adding data in nodes
-part1: a template to born a node and to create a list len(data, next)
+part1: a template to create a node and to create a list len(data, next)
 part2: is to init the head and init the next
 
 */
@@ -15,12 +15,12 @@ type node struct{
 	next *node
 }
 
-type linkedlist struct{
+type llist struct{
 	head *node
 	length int
 }
-//method to add nodes to: linklist has a head of a node and pointer to the next value
-func (l *linkedlist) prepend(n *node) {
+//method to add nodes to: linklist has a head to house a node and pointer to the next node
+func (l *llist) prepend(n *node) {
 	//fmt.Println("ooooooooooooo",n)
 	//Define a place to put n
 	Second := l.head
@@ -31,11 +31,10 @@ func (l *linkedlist) prepend(n *node) {
 	l.head.next = Second
 	//
 	l.length++
-
 }
 
-//A copy of linkedlist struct
-func (l linkedlist) printListData(){
+//A copy of llist struct
+func (l *llist) printListData(){
 	toPrint := l.head // head is inside toPrint
 	//counting down from the highest l.length
 	for l.length != 0{
@@ -43,11 +42,11 @@ func (l linkedlist) printListData(){
 		toPrint= toPrint.next
 		l.length -- 
 	}
-	fmt.Printf("\n")
 }
 
 //Delete a particular node value
-func (l linkedlist) deleteWithVal(val int){
+func (l llist) deleteWithVal(val int){
+	//handle null list value
 	prevToDelete := l.head
 	//comparing values in the next node
 	for prevToDelete.next.data != val{
@@ -83,7 +82,7 @@ func (l linkedlist) deleteWithVal(val int){
 
 
 func main(){
-	myList := linkedlist{}
+	myList := llist{}
     node1 := &node{data: 40}
 	node2 := &node{data: 33}
 	node3 := &node{data: 30}
@@ -98,7 +97,7 @@ func main(){
 	myList.prepend(node5)
 	myList.prepend(node6)
 	myList.prepend(node7)
-	// fmt.Printf("full list %v", myList)
+	fmt.Printf("full list %v", myList)
 	myList.printListData()
 
 	/******************SECOND CODE CALL****************************/

@@ -34,7 +34,7 @@ func (l *llist) prepend(n *node) {
 }
 
 //A copy of llist struct
-func (l *llist) printListData(){
+func (l llist) printListData(){
 	toPrint := l.head // head is inside toPrint
 	//counting down from the highest l.length
 	for l.length != 0{
@@ -45,11 +45,13 @@ func (l *llist) printListData(){
 }
 
 //Delete a particular node value
-func (l llist) deleteWithVal(val int){
+func (l *llist) deleteWithVal(val int){
 	//handle null list value
 	prevToDelete := l.head
-	//comparing values in the next node
+	//fmt.Printf("type: %d", prevToDelete.next.data)
+	     //comparing values in the prev node
 	for prevToDelete.next.data != val{
+		//while the next == val, keep going to the next node
 		prevToDelete = prevToDelete.next
 	}
 	prevToDelete.next = prevToDelete.next.next
@@ -97,9 +99,12 @@ func main(){
 	myList.prepend(node5)
 	myList.prepend(node6)
 	myList.prepend(node7)
-	fmt.Printf("full list %v", myList)
+	//fmt.Printf("full list %v", myList)
+	//myList.printListData()
+	myList.deleteWithVal(33)
+	myList.deleteWithVal(6)
+	myList.deleteWithVal(30)
 	myList.printListData()
-
 	/******************SECOND CODE CALL****************************/
 	//head := NewNode(30, NewNode(10, NewNode(40, NewNode(40, nil))))
 	//CountNodes(head)

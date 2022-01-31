@@ -109,3 +109,4 @@ func main(){
 	//head := NewNode(30, NewNode(10, NewNode(40, NewNode(40, nil))))
 	//CountNodes(head)
 }
+

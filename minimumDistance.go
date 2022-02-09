@@ -1,23 +1,33 @@
+// Given an array of positive numbers and a positive number
+// ‘S,’ find the length of the smallest contiguous subarray
 package main
 
-//O(n) time complexity 
-//O(n) space complexity
-//Please post your solution here if you achieved O(n) time and O(1) space 
-func minimumDistances(a []int32) int32 {
-    minimum := int32(math.MaxInt32)
-    myMap := map[int32]int{}
-    for i, v := range a {
-        pastIdx := myMap[v]
-        if pastIdx != 0{
-            if minimum > int32(i+1-pastIdx){
-                minimum = int32(i+1-pastIdx)
-            }
-        }else {
-            myMap[v] = i+1
-        }
-    }
-    if minimum == math.MaxInt32{
-        return -1
-    }
-    return minimum
+import (
+	"fmt"
+)
+
+func main() {
+	fmt.Println("Hello, 世界")
+	fmt.Println(checksl(7, []int{2, 1, 5, 2, 3, 2}))
+}
+
+func checksl(s int, arr []int) []int {
+	total := []int{}
+	sum := 0
+	minL := 0
+	start := 0
+	for i := 0; i < len(arr); i++ {
+		sum += arr[i]
+		for sum >= 8 {
+			if minL < i-start+1 {
+				minL = i - start + 1
+			}
+			sum -= arr[start]
+			start++
+		}
+		if minL == 0 {
+			return 0
+		}
+	}
+	return minL
 }
